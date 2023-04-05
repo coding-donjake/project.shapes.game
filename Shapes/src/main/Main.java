@@ -19,14 +19,16 @@ public class Main extends Canvas implements Runnable {
     private int ticksPerSecond, framesPerSecond;
     private double timePerTick, timePerRender;
     
-    public final int WIDTH = 800, HEIGHT = 500;
+    private int tps, fps;
+    
+    public static final int WIDTH = 800, HEIGHT = 500;
 	
 	public Main(int ticksPerSecond, int framesPerSecond) {
 		this.ticksPerSecond = ticksPerSecond;
 		this.framesPerSecond = framesPerSecond;
         timePerTick = 1000000000 / this.ticksPerSecond;
         timePerRender = 1000000000 / this.framesPerSecond;
-        game = new Game();
+        game = new Game(this);
         new Window(this);
 	}
 	
@@ -75,7 +77,8 @@ public class Main extends Canvas implements Runnable {
                 deltaRender--;
             }
             if (timer >= 1000000000) {
-            	System.out.println("TPS: " + ticks + " FPS: " + renders);
+            	tps = ticks;
+            	fps = renders;
             	ticks = 0;
             	renders = 0;
             	timer = 0;
@@ -98,11 +101,16 @@ public class Main extends Canvas implements Runnable {
     	Graphics2D g = (Graphics2D) bs.getDrawGraphics();
     	g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-    	g.setColor(Color.green);
+    	g.setColor(Color.gray);
     	g.fillRect(0, 0, WIDTH, HEIGHT);
     	
     	// render here
     	game.render(g);
+    	
+    	g.setColor(Color.gray);
+    	g.fillRect(WIDTH - 130, HEIGHT - 30, 120, 20);
+    	g.setColor(Color.black);
+    	g.drawString("TPS: " + tps + " FPS: " + fps, WIDTH - 125, HEIGHT - 15);
     	
     	g.dispose();
     	bs.show();
