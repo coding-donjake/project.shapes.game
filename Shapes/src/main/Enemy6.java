@@ -3,33 +3,35 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Enemy1 extends GameObject {
+public class Enemy6 extends GameObject {
 
-	public Enemy1(double x, double y, Handler handler) {
+	public Enemy6(double x, double y, Handler handler) {
 		super(x, y, handler);
 		
 		// required attributes
 		id = ID.enemy;
-		color = Color.red;
+		color = Color.cyan;
 		
 		// positioning and size
-		radius = 15;
+		radius = 25;
 		width = radius * 2;
 		height = radius * 2;
 		
 		// global increase
-		damage = 10;
+		damage = 40;
 		
 		// kill increase
-		experience = 3;
+		experience = 70;
 		
 		// strength
-		health = 30;
-		maxHealth = 30;
+		health = 100;
+		maxHealth = 100;
 		
 		// agility
-		movementSpeed = 0.8;
+		movementSpeed = 0.7;
 		
+		// abilities
+		reflection = 10;
 		
 	}
 
@@ -41,7 +43,11 @@ public class Enemy1 extends GameObject {
 			for (int i = 0; i < handler.objects.size(); i++) {
 				GameObject object = handler.objects.get(i);
 				if (object.id == ID.player) {
-					followPoint(object.x, object.y);
+					if (bounceEnergy <= 0) {
+						followPoint(object.x, object.y);
+					} else {
+						bounce(angle);
+					}
 					travel();
 					if (Game.checkCollision(x, y, radius, object.x, object.y, object.radius)) {
 						if (object.reflection <= 0) {
@@ -70,6 +76,8 @@ public class Enemy1 extends GameObject {
 		// health bar
 		g.setColor(Color.red);
 		g.fillRect((int)(Camera.calcX(x, handler) - (width / 2)), (int)(Camera.calcY(y, handler) - (height / 2)) - 10, (int)((health / maxHealth) * width), 5);
+		g.setColor(Color.blue);
+		g.fillRect((int)(Camera.calcX(x, handler) - (width / 2)), (int)(Camera.calcY(y, handler) - (height / 2)) - 10, (int)((reflection / 10.0) * width), 5);
 		g.setColor(Color.black);
 		g.drawRect((int)(Camera.calcX(x, handler) - (width / 2)), (int)(Camera.calcY(y, handler) - (height / 2)) - 10, (int)width, 5);
 	}

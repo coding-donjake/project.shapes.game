@@ -3,39 +3,45 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Enemy1 extends GameObject {
+public class Enemy4 extends GameObject {
 
-	public Enemy1(double x, double y, Handler handler) {
+	public Enemy4(double x, double y, Handler handler) {
 		super(x, y, handler);
 		
 		// required attributes
 		id = ID.enemy;
-		color = Color.red;
+		color = Color.pink;
 		
 		// positioning and size
-		radius = 15;
+		radius = 40;
 		width = radius * 2;
 		height = radius * 2;
 		
 		// global increase
-		damage = 10;
+		damage = 70;
 		
 		// kill increase
-		experience = 3;
+		experience = 100;
 		
 		// strength
-		health = 30;
-		maxHealth = 30;
+		health = 500;
+		maxHealth = 500;
 		
 		// agility
-		movementSpeed = 0.8;
-		
+		armor = 5;
+		movementSpeed = 0.5;
 		
 	}
 
 	@Override
 	public void tick() {
 		if (health <= 0) {
+			angle = Math.toRadians((Math.random() * 120) + 0);
+			handler.objects.add(new Enemy5(x, y, angle, handler));
+			angle = Math.toRadians((Math.random() * 120) + 120);
+			handler.objects.add(new Enemy5(x, y, angle, handler));
+			angle = Math.toRadians((Math.random() * 120) + 240);
+			handler.objects.add(new Enemy5(x, y, angle, handler));
 			die();
 		} else {
 			for (int i = 0; i < handler.objects.size(); i++) {

@@ -3,14 +3,14 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Enemy1 extends GameObject {
+public class Enemy2 extends GameObject {
 
-	public Enemy1(double x, double y, Handler handler) {
+	public Enemy2(double x, double y, Handler handler) {
 		super(x, y, handler);
 		
 		// required attributes
 		id = ID.enemy;
-		color = Color.red;
+		color = Color.green;
 		
 		// positioning and size
 		radius = 15;
@@ -18,14 +18,15 @@ public class Enemy1 extends GameObject {
 		height = radius * 2;
 		
 		// global increase
-		damage = 10;
+		damage = 15;
 		
 		// kill increase
-		experience = 3;
+		experience = 8;
 		
 		// strength
 		health = 30;
 		maxHealth = 30;
+		regen = 0.1;
 		
 		// agility
 		movementSpeed = 0.8;
@@ -38,6 +39,7 @@ public class Enemy1 extends GameObject {
 		if (health <= 0) {
 			die();
 		} else {
+			regen();
 			for (int i = 0; i < handler.objects.size(); i++) {
 				GameObject object = handler.objects.get(i);
 				if (object.id == ID.player) {

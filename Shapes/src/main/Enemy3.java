@@ -3,34 +3,35 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Enemy1 extends GameObject {
+public class Enemy3 extends GameObject {
 
-	public Enemy1(double x, double y, Handler handler) {
+	public Enemy3(double x, double y, Handler handler) {
 		super(x, y, handler);
 		
 		// required attributes
 		id = ID.enemy;
-		color = Color.red;
+		color = Color.blue;
 		
 		// positioning and size
-		radius = 15;
+		radius = 8;
 		width = radius * 2;
 		height = radius * 2;
 		
 		// global increase
-		damage = 10;
+		damage = 30;
 		
 		// kill increase
-		experience = 3;
+		experience = 30;
 		
 		// strength
-		health = 30;
-		maxHealth = 30;
+		health = 10;
+		maxHealth = 10;
 		
 		// agility
-		movementSpeed = 0.8;
+		movementSpeed = 4;
 		
-		
+		// global attributes
+		damageType = "magical";
 	}
 
 	@Override

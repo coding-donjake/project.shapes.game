@@ -20,8 +20,6 @@ public class KeyInput extends KeyAdapter {
 				if (object.id == ID.player) {
 					object.moveUp = true;
 					object.moveDown = false;
-					object.moveLeft = false;
-					object.moveRight = false;
 				}
 			}
 		}
@@ -32,8 +30,6 @@ public class KeyInput extends KeyAdapter {
 				if (object.id == ID.player) {
 					object.moveUp = false;
 					object.moveDown = true;
-					object.moveLeft = false;
-					object.moveRight = false;
 				}
 			}
 		}
@@ -42,8 +38,6 @@ public class KeyInput extends KeyAdapter {
 			for (int i = 0; i < handler.objects.size(); i++) {
 				GameObject object = handler.objects.get(i);
 				if (object.id == ID.player) {
-					object.moveUp = false;
-					object.moveDown = false;
 					object.moveLeft = true;
 					object.moveRight = false;
 				}
@@ -54,10 +48,61 @@ public class KeyInput extends KeyAdapter {
 			for (int i = 0; i < handler.objects.size(); i++) {
 				GameObject object = handler.objects.get(i);
 				if (object.id == ID.player) {
-					object.moveUp = false;
-					object.moveDown = false;
 					object.moveLeft = false;
 					object.moveRight = true;
+				}
+			}
+		}
+		// increaseStrength
+		if (key == KeyEvent.VK_R) {
+			for (int i = 0; i < handler.objects.size(); i++) {
+				GameObject object = handler.objects.get(i);
+				if (object.id == ID.player) {
+					object.increaseStrength();
+				}
+			}
+		}
+		// increaseAgility
+		if (key == KeyEvent.VK_F) {
+			for (int i = 0; i < handler.objects.size(); i++) {
+				GameObject object = handler.objects.get(i);
+				if (object.id == ID.player) {
+					object.increaseAgility();
+				}
+			}
+		}
+		// increaseIntelligence
+		if (key == KeyEvent.VK_V) {
+			for (int i = 0; i < handler.objects.size(); i++) {
+				GameObject object = handler.objects.get(i);
+				if (object.id == ID.player) {
+					object.increaseIntelligence();
+				}
+			}
+		}
+		// cast1
+		if (key == KeyEvent.VK_1) {
+			for (int i = 0; i < handler.objects.size(); i++) {
+				GameObject object = handler.objects.get(i);
+				if (object.id == ID.player) {
+					if (object.ability1 && object.cd1 >= 4000 && object.mana > 30) {
+						object.cast1 = 30;
+						object.cd1 = 0;
+						object.mana -= 30;
+					}
+				}
+			}
+		}
+		// cast1
+		if (key == KeyEvent.VK_E) {
+			for (int i = 0; i < handler.objects.size(); i++) {
+				GameObject object = handler.objects.get(i);
+				if (object.id == ID.player) {
+					if (!object.shooting) {
+						object.shooting = true;
+					} else {
+						object.shooting = false;
+					}
 				}
 			}
 		}

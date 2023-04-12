@@ -21,7 +21,7 @@ public class Main extends Canvas implements Runnable {
     
     private int tps, fps;
     
-    public static final int WIDTH = 800, HEIGHT = 500;
+    public static final int WIDTH = 1136, HEIGHT = 640;
 	
 	public Main(int ticksPerSecond, int framesPerSecond) {
 		this.ticksPerSecond = ticksPerSecond;
@@ -101,7 +101,7 @@ public class Main extends Canvas implements Runnable {
     	Graphics2D g = (Graphics2D) bs.getDrawGraphics();
     	g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-    	g.setColor(Color.gray);
+    	g.setColor(Color.black);
     	g.fillRect(0, 0, WIDTH, HEIGHT);
     	
     	// render here

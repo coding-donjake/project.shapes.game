@@ -3,33 +3,37 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Enemy1 extends GameObject {
+public class Enemy5 extends GameObject {
 
-	public Enemy1(double x, double y, Handler handler) {
-		super(x, y, handler);
+	public Enemy5(double x, double y, double angle, Handler handler) {
+		super(x, y, angle, handler);
 		
 		// required attributes
 		id = ID.enemy;
-		color = Color.red;
+		color = Color.pink;
 		
 		// positioning and size
-		radius = 15;
+		radius = 20;
 		width = radius * 2;
 		height = radius * 2;
 		
 		// global increase
-		damage = 10;
+		damage = 30;
 		
 		// kill increase
-		experience = 3;
+		experience = 35;
 		
 		// strength
-		health = 30;
-		maxHealth = 30;
+		health = 100;
+		maxHealth = 100;
 		
 		// agility
-		movementSpeed = 0.8;
+		movementSpeed = 1;
 		
+		// global attributes
+		vulnerable = false;
+		bounceEnergy = 30;
+		damageType = "magical";
 		
 	}
 
@@ -38,23 +42,28 @@ public class Enemy1 extends GameObject {
 		if (health <= 0) {
 			die();
 		} else {
-			for (int i = 0; i < handler.objects.size(); i++) {
-				GameObject object = handler.objects.get(i);
-				if (object.id == ID.player) {
-					followPoint(object.x, object.y);
-					travel();
-					if (Game.checkCollision(x, y, radius, object.x, object.y, object.radius)) {
-						if (object.reflection <= 0) {
-							if (object.alive && object.vulnerable) {
-								object.takeDamage(damageType, damage);
-								object.takeExperience(2);
-								alive = false;
+			if (bounceEnergy <= 0) {
+				for (int i = 0; i < handler.objects.size(); i++) {
+					GameObject object = handler.objects.get(i);
+					if (object.id == ID.player) {
+						followPoint(object.x, object.y);
+						travel();
+						if (Game.checkCollision(x, y, radius, object.x, object.y, object.radius)) {
+							if (object.reflection <= 0) {
+								if (object.alive && object.vulnerable) {
+									object.takeDamage(damageType, damage);
+									object.takeExperience(2);
+									alive = false;
+								}
+							} else {
+								
 							}
-						} else {
-							
 						}
 					}
 				}
+			} else {
+				bounce(angle);
+				travel();
 			}
 		}
 	}

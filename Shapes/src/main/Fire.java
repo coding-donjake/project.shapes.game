@@ -3,14 +3,14 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Bullet extends GameObject {
+public class Fire extends GameObject {
 
-	public Bullet(double x, double y, double angle, double attackSpeed, double attackRange, double damage, Handler handler) {
+	public Fire(double x, double y, double angle, double attackSpeed, double attackRange, double damage, Handler handler) {
 		super(x, y, angle, attackSpeed, attackRange, damage, handler);
 		
 		// required attributes
 		id = ID.bullet;
-		color = Color.darkGray;
+		color = Color.orange;
 		
 		// positioning and size
 		radius = 8;
@@ -19,6 +19,9 @@ public class Bullet extends GameObject {
 		
 		// agility
 		movementSpeed = 10;
+		
+		// global attributes
+		damageType = "magical";
 		
 		calculateVelocities(angle);
 	}
