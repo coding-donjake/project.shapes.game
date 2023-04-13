@@ -40,6 +40,11 @@ public class Enemy6 extends GameObject {
 		if (health <= 0) {
 			die();
 		} else {
+			if (reflection <= 0) {
+				color = Color.magenta;
+				damage = 60;
+				movementSpeed = 1.4;
+			}
 			for (int i = 0; i < handler.objects.size(); i++) {
 				GameObject object = handler.objects.get(i);
 				if (object.id == ID.player) {

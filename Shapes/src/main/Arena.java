@@ -27,11 +27,11 @@ public class Arena extends GameObject {
 	public void tick() {
 		timer++;
 		
-		if (timer % 50 == 0) {
+		if (timer % 200 == 0) {
 			angle = 6.28319 * Math.random();
 			double x = ((radius + 300) * Math.cos(angle)) * -1;
 			double y = ((radius + 300) * Math.sin(angle)) * -1;
-			handler.objects.add(new Enemy6(x, y, handler));
+			handler.objects.add(new Enemy1(x, y, handler));
 		}
 		
 		if (timer > 2000 && timer % 200 == 0) {

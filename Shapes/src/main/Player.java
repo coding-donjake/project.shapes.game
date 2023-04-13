@@ -39,9 +39,6 @@ public class Player extends GameObject {
 		cd1 = 8000;
 		cd1 = 12000;
 		
-		level = 30;
-		points = 30;
-		
 	}
 
 	@Override
